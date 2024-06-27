@@ -1,0 +1,27 @@
+---
+train:
+  params:
+    batch_size: 256
+    epoch: 20
+    lr: 0.001
+    decay: 0.1
+    decay_step: 75000
+    loss: MSELoss
+  save:
+    save_path: "experiments-iTracker"
+    model_name: "iTracker"
+    step: 1
+  data:
+    path:
+        [
+          "GazeEstimation/dataset/gazecapture_raw"
+        ]
+test:
+  load:
+    begin_step: 1
+    end_step: 20
+    steps: 1
+    model_name: "iTracker"
+    load_path:  "experiments-iTracker"
+  data:
+    path:  "GazeEstimation/dataset/gazecapture_raw"
