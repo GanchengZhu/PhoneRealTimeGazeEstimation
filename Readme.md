@@ -71,7 +71,7 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
 Calibration is essential for mapping the relationship between ocular features and gaze coordinates in both appearance- and geometry-based video eye tracking. We utilize three swarm intelligence algorithms to optimize the hyperparameters of the support vector regressor. Below are the steps to run the experiments.
 
 Before running the following code, please download the calibration feature dataset 
-using https://pan.baidu.com/s/1hdX_ntAam6cCwV5Za1qH0A?pwd=gaze . Then, unzipping the dataset and moving all files and directories to `SwarmIntelligentCalibration/calibration_data`
+using https://pan.baidu.com/s/1hdX_ntAam6cCwV5Za1qH0A?pwd=gaze . Then, unzipping the dataset and moving all files and directories to `SwarmIntelligentCalibration/calibration_data`.
 
 1. Hyperparameter search for support vector regressor
 
@@ -107,6 +107,8 @@ The One Euro filter is a low-latency filtering algorithm, functioning as a first
 
 ## how to run eye movement filters
 
+   Download feature files from https://pan.baidu.com/s/1GkYKdjz1FHEuad4CyWiXOg?pwd=gaze. Then, unzipping the dataset and moving all files and directories to `Filter/feature`.
+    
    ```bash
    cd Filter
    python -m pip install -r requirements.txt
