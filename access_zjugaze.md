@@ -1,6 +1,6 @@
 # How to Access the ZJUGaze Dataset
 
-Due to the strict requirements of our IRB, the dataset must remain on a local computer and cannot be accessed over the network. As a result, we offer remote desktop access through the Sunlogin software.
+Due to the strict requirements of our IRB, the dataset must remain on a local computer. As a result, we offer remote desktop access through the Sunlogin software.
 
 # Quick Start Guide
 
