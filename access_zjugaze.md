@@ -4,7 +4,7 @@ Due to the strict requirements of our IRB, the dataset must remain on a local co
 
 # Quick Start Guide
 
-  1.Download and Install Sunlogin
+  1. Download and Install Sunlogin
     Download the Sunlogin software from **[here](https://sunlogin.oray.com/download)** and install it on your computer.
   
   2. Send an Access Request
