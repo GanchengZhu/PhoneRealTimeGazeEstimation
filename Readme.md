@@ -60,12 +60,18 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
 5. Finetuning
 
     You can run the following code to run the finetuning experiments with the ZJUGaze dataset.
-6. 
+   
      ```bash
     cd GazeEstimation/finetuing
     python finetuning_freezen.py --model_path {model_path} --data_source {data_source}
     ```
 
+6. How to get feature for calibration
+
+     ```bash
+    cd GazeEstimation
+    python predict_features.py --model_path {model_path} --npy_save_dir {--npy_save_dir}
+    ```
 # Personal Calibration 
 
 Calibration is essential for mapping the relationship between ocular features and gaze coordinates in both appearance- and geometry-based video eye tracking. We utilize three swarm intelligence algorithms to optimize the hyperparameters of the support vector regressor. Below are the steps to run the experiments.
