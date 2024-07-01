@@ -11,6 +11,7 @@ train:
     save_path: "experiments-iTracker"
     model_name: "iTracker"
     step: 1
+    label: "gazecapture" # gazecapture, zjugaze or all
   data:
     path:
         [

@@ -2,12 +2,11 @@ import copy
 import json
 import os
 import random
-import time
 
 import cv2
 import numpy as np
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, DistributedSampler
 
 
 # from albumentations import *
@@ -47,16 +46,16 @@ def aug_line(line, width, height):
     return line
 
 
-class loader(Dataset):
+class GazeDataset(Dataset):
 
-    def __init__(self, data_path_list, data_type, ban_list=[], device="", iTracker_format=False, ori_filter=[]):
+    def __init__(self, data_path_list, data_type, device="phone", itracker_format=False, ori_filter=None):
         self.lines = []
         self.labels = {}
         self.data_path_list = data_path_list
         self.data_type = data_type
-        self.iTracker_format = iTracker_format
+        self.itracker_format = itracker_format
         # subjects = []
-        
+
         for data_path in data_path_list:
             # data_path_raw = data_path.replace("gaze_capture_re_preprocessing", "gazecapture_raw")
             subjects = os.listdir(data_path)
@@ -71,16 +70,11 @@ class loader(Dataset):
                         or subject == '01730' or subject == '02065'):
                     continue
 
-                if ban_list:
-                    if subject in ban_list:
-                        continue
-
                 info_json = json.load(open(os.path.join(subject_path, "info.json"), "r"))
                 current_data_type = info_json["Dataset"]
-
                 device_name = info_json["DeviceName"]
-                if device and device not in device_name.lower():
-                    # print(device_name)
+
+                if device not in device_name.lower():
                     continue
 
                 self.labels[subject] = json.load(open(os.path.join(subject_path, "dotInfo.json"), "r"))
@@ -205,14 +199,13 @@ class loader(Dataset):
         leftEye_img = img[line[3][0]:line[3][1], line[3][2]:line[3][3]]
         rightEye_img = img[line[4][0]:line[4][1], line[4][2]:line[4][3]]
 
-
         # try:
         face_img = cv2.resize(face_img, (224, 224))
         face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2RGB)
         face_img = face_img / 255.
         face_img = face_img.transpose(2, 0, 1)
 
-        if self.iTracker_format:
+        if self.itracker_format:
             eye_size = (224, 224)
         else:
             eye_size = (112, 112)
@@ -236,7 +229,7 @@ class loader(Dataset):
         # ex_label = line[6]
         label = np.array([self.labels[line[0]]["XCam"][line[1]],
                           self.labels[line[0]]["YCam"][line[1]]])
-        if self.iTracker_format:
+        if self.itracker_format:
             face_grid = np.zeros(shape=(25, 25))
             face_grid[line[7][0]:line[7][1], line[7][2]:line[7][3]] = 1
             face_grid = np.expand_dims(face_grid, 0)
@@ -245,10 +238,10 @@ class loader(Dataset):
                     "rightEyeImg": torch.from_numpy(rightEye_img).type(torch.FloatTensor),
                     # "rects": torch.from_numpy(rects).type(torch.FloatTensor),
                     "label": torch.from_numpy(label).type(torch.FloatTensor),
-                    "grid": torch.from_numpy(face_grid).type(torch.FloatTensor), 
+                    "grid": torch.from_numpy(face_grid).type(torch.FloatTensor),
                     "folder": line[0],
-                    "frame": line[1]  
-                                      
+                    "frame": line[1]
+
                     }
         else:
             return {"faceImg": torch.from_numpy(face_img).type(torch.FloatTensor),
@@ -261,28 +254,20 @@ class loader(Dataset):
                     # "grid": torch.from_numpy(face_grid).type(torch.FloatTensor),
                     }
 
-        # return {"faceImg": torch.from_numpy(face_img).type(torch.FloatTensor),
-        #         "leftEyeImg": torch.from_numpy(leftEye_img).type(torch.FloatTensor),
-        #         "rightEyeImg": torch.from_numpy(rightEye_img).type(torch.FloatTensor),
-        #         "rects": torch.from_numpy(rects).type(torch.FloatTensor),
-        #         "label": torch.from_numpy(label).type(torch.FloatTensor),
-        #         "grid": torch.from_numpy(face_grid).type(torch.FloatTensor), }
-        # "exlabel": torch.from_numpy(np.array(line[6])).type(torch.FloatTensor), "frame": line}
 
-
-def txtload(path_list, data_type, batch_size, shuffle=False, num_workers=0, ban_list=[], device="", iTracker_format=False,
-            ori_filter=[]):
-    dataset = loader(path_list, data_type, ban_list=ban_list, device=device, iTracker_format=iTracker_format,
-                     ori_filter=ori_filter)
+def gaze_loader(path_list, data_type, batch_size, shuffle=False, num_workers=0, itracker_format=False, device="phone",
+                ori_filter=None):
+    dataset = GazeDataset(path_list, data_type, itracker_format=itracker_format, device=device,
+        ori_filter = ori_filter)
     print("[Read Data]: GazeCapture Dataset")
     print("[Read Data]: Total num: {:d}".format(len(dataset)))
     print("[Read Data]: Dataset type: {:s}".format(data_type))
 
-    if type == "train":
-        load = DataLoader(dataset, batch_size=batch_size, pin_memory=False, shuffle=shuffle,
-                          num_workers=num_workers)
-        return None, load
+    if data_type == "train":
+        sampler = DistributedSampler(dataset, shuffle=True)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, pin_memory=True, sampler=sampler,
+                            num_workers=num_workers)
+        return sampler, loader
     else:
         load = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
         return load
-

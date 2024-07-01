@@ -38,10 +38,10 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
     Create a configuration for a gaze estimation experiment according to a template `GazeEstimation/config/config_itracker.yaml`, 
     then run model training:
     ```bash
-    # if train iTracker 
-    python train_itracker.py --config_file {path to the configuration file}
-    # if train AFFNet or MGazeNet
-    python train_affnet_mgazenet.py
+    # if you train iTracker
+    python -m torch.distributed.launch --nproc_per_node=2 --master_port=29900 train.py --world_size 2 --config_file config/config_itracker.yaml 
+    # train your config file
+    python -m torch.distributed.launch --nproc_per_node=2 --master_port=29900 train.py --world_size 2 --config_file {path to configuration file} 
     ```
   
     Run model evaluation:

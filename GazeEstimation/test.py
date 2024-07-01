@@ -30,7 +30,7 @@ def create_dir(dir_path):
         os.makedirs(dir_path)
 
 
-def do_evaluation(net, dataset, epoch, iTracker_format=1):
+def do_evaluation(net, dataset, epoch, itracker_format=1):
     net.eval()
 
     count = 0
@@ -42,7 +42,7 @@ def do_evaluation(net, dataset, epoch, iTracker_format=1):
             data["leftEyeImg"] = data["leftEyeImg"].to(device)
             data['rightEyeImg'] = data['rightEyeImg'].to(device)
 
-            if not iTracker_format:
+            if not itracker_format:
                 data['rects'] = data['rects'].to(device)
             else:
                 data['grid'] = data['grid'].to(device)
@@ -51,7 +51,7 @@ def do_evaluation(net, dataset, epoch, iTracker_format=1):
             sub_id = np.array(data["folder"]).reshape((-1, 1))
             frame_id = np.array(data["frame"]).reshape((-1, 1))
 
-            if not iTracker_format:
+            if not itracker_format:
                 gazes = net(data["leftEyeImg"], data["rightEyeImg"], data['faceImg'], data['rects'])
             else:
                 gazes = net(data)
@@ -99,38 +99,38 @@ if __name__ == "__main__":
     gazecap_data_path = [
         "/home/robotics2/data_ssd03/bk_all_datasets/train_datasets/gazeCapture-raw"
     ]
-    our_lissajous_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/lissajous"]
-    our_smooth_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/smooth"]
-    our_random_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/random"]
+    # our_lissajous_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/lissajous"]
+    # our_smooth_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/smooth"]
+    # our_random_data_path = ["/media/robotics/ca9601d4-7476-4123-b138-cac7340caaa8/gazeCapture-202211/random"]
 
     print("Read data")
-    # dataset = data_reader.txtload(path, "test", 512, num_workers=20, shuffle=False)
-    if model_name == "iTracker":
+    # dataset = data_reader.gaze_loader(path, "test", 512, num_workers=20, shuffle=False)
+    if model_name == "itracker":
         if "zjugaze" in model_name:
-            gazecap_test_dataset = data_reader.txtload(gazecap_data_path, "test", 64, num_workers=14, iTracker_format=1,
+            gazecap_test_dataset = data_reader.gaze_loader(gazecap_data_path, "test", 64, num_workers=14, itracker_format=1,
                                                        device="phone", ori_filter=[1])
         else:
-            gazecap_test_dataset = data_reader.txtload(gazecap_data_path, "test", 64, num_workers=14, iTracker_format=1,
+            gazecap_test_dataset = data_reader.gaze_loader(gazecap_data_path, "test", 64, num_workers=14, itracker_format=1,
                                                        device="phone")
-        our_lissajous_test_dataset = data_reader.txtload(our_lissajous_data_path, "test", 64, num_workers=8,
-                                                         iTracker_format=1)
-        our_smooth_test_dataset = data_reader.txtload(our_smooth_data_path, "test", 64, num_workers=8,
-                                                      iTracker_format=1)
-        our_random_test_dataset = data_reader.txtload(our_random_data_path, "test", 64, num_workers=8,
-                                                      iTracker_format=1)
+        # our_lissajous_test_dataset = data_reader.gaze_loader(our_lissajous_data_path, "test", 64, num_workers=8,
+        #                                                  itracker_format=1)
+        # our_smooth_test_dataset = data_reader.gaze_loader(our_smooth_data_path, "test", 64, num_workers=8,
+        #                                               itracker_format=1)
+        # our_random_test_dataset = data_reader.gaze_loader(our_random_data_path, "test", 64, num_workers=8,
+        #                                               itracker_format=1)
     else:
         if "zjugaze" in model_name:
-            gazecap_test_dataset = data_reader.txtload(gazecap_data_path, "test", 64, num_workers=14, iTracker_format=1,
+            gazecap_test_dataset = data_reader.gaze_loader(gazecap_data_path, "test", 64, num_workers=14, itracker_format=1,
                                                        device="phone", ori_filter=[1])
         else:
-            gazecap_test_dataset = data_reader.txtload(gazecap_data_path, "test", 64, num_workers=14, iTracker_format=1,
+            gazecap_test_dataset = data_reader.gaze_loader(gazecap_data_path, "test", 64, num_workers=14, itracker_format=1,
                                                        device="phone")
-        our_lissajous_test_dataset = data_reader.txtload(our_lissajous_data_path, "test", 64, num_workers=8,
-                                                         iTracker_format=0)
-        our_smooth_test_dataset = data_reader.txtload(our_smooth_data_path, "test", 64, num_workers=8,
-                                                      iTracker_format=0)
-        our_random_test_dataset = data_reader.txtload(our_random_data_path, "test", 64, num_workers=8,
-                                                      iTracker_format=0)
+        # our_lissajous_test_dataset = data_reader.gaze_loader(our_lissajous_data_path, "test", 64, num_workers=8,
+        #                                                  itracker_format=0)
+        # our_smooth_test_dataset = data_reader.gaze_loader(our_smooth_data_path, "test", 64, num_workers=8,
+        #                                               itracker_format=0)
+        # our_random_test_dataset = data_reader.gaze_loader(our_random_data_path, "test", 64, num_workers=8,
+        #                                               itracker_format=0)
     begin = config["load"]["begin_step"]
     end = config["load"]["end_step"]
     step = config["load"]["steps"]
@@ -139,18 +139,18 @@ if __name__ == "__main__":
     lissajous_all_result = []
     smooth_all_result = []
     random_all_result = []
-    iTracker_format = 1
+    itracker_format = 1
     for save_iter in range(begin, end + step, step):
         print("Model building")
         if model_name == "AFFNet":
             net = AFFNet.model()
-            iTracker_format = 0
-        elif model_name == "iTracker":
+            itracker_format = 0
+        elif model_name == "itracker":
             net = itracker.ITrackerModel()
-            iTracker_format = 1
+            itracker_format = 1
         else:
             net = MGazeNet.MGazeNet()
-            iTracker_format = 0
+            itracker_format = 0
 
         net.to(device)
         state_dict = torch.load(os.path.join(save_path, f"Iter_{save_iter}_{model_name}.pt"), map_location='cuda:0')
@@ -165,19 +165,19 @@ if __name__ == "__main__":
 
         print(f"Test {save_iter}")
         gazecap_res, gazecap_count = do_evaluation(net, gazecap_test_dataset, epoch=save_iter,
-                                                   iTracker_format=iTracker_format)
+                                                   itracker_format=itracker_format)
         gazecap_all_result.append(pd.DataFrame(
             {"Iter": save_iter, "ME": gazecap_res, "count": gazecap_count}, index=[0]))
 
-        # lissajous_res, lissajous_count = do_evaluation(net, our_lissajous_test_dataset, epoch=save_iter, iTracker_format=iTracker_format)
+        # lissajous_res, lissajous_count = do_evaluation(net, our_lissajous_test_dataset, epoch=save_iter, itracker_format=itracker_format)
         # lissajous_all_result.append(pd.DataFrame(
         #     {"Iter": save_iter, "ME": lissajous_res, "count": lissajous_count}, index=[0]))
 
-        # smooth_res, smooth_count = do_evaluation(net, our_smooth_test_dataset, epoch=save_iter, iTracker_format=iTracker_format)
+        # smooth_res, smooth_count = do_evaluation(net, our_smooth_test_dataset, epoch=save_iter, itracker_format=itracker_format)
         # smooth_all_result.append(pd.DataFrame(
         #     {"Iter": save_iter, "ME": smooth_res, "count": smooth_count}, index=[0]))
 
-        # random_res, random_count = do_evaluation(net, our_random_test_dataset, epoch=save_iter, iTracker_format=iTracker_format)
+        # random_res, random_count = do_evaluation(net, our_random_test_dataset, epoch=save_iter, itracker_format=itracker_format)
         # random_all_result.append(pd.DataFrame(
         #     {"Iter": save_iter, "ME": random_res, "count":random_count}, index=[0]))
 
