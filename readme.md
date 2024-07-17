@@ -1,4 +1,4 @@
-# Linear Adaptive Batch Normalization Based Neural Networks and Swarm Intelligence Calibration for Real-time Gaze Estimation on Smartphones
+# Neural Networks with Linear Adaptive Batch Normalization and Swarm Intelligence Calibration for Real-Time Gaze Estimation on Smartphones
 
 Eye-tracking has emerged as a valuable tool for both research and clinical applications. However, traditional eye-tracking systems are often bulky and expensive, limiting their widespread adoption in various fields. With the advancement of deep learning and edge computing technologies, eye-tracking on smartphones becomes feasible. Nonetheless, the field still faces practical challenges related to large-scale datasets, model inference speed, and gaze estimation accuracy. 
 
