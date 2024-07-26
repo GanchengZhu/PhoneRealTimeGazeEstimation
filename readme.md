@@ -8,7 +8,7 @@ The present study created a new dataset that contains over 3.2 million face imag
 # Gaze Estimation
 
 Train three models (iTracker, AFFNet, and MGazeNet) for gaze estimation and Deploy them on phones or PCs.
-The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090 graphics cards, an Intel Xeon Silver 4210 processor, and 256 GB of RAM. The software environment consisted of Ubuntu 18.0, CUDA 11.0, and Python 3.9.12. T
+The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090 graphics cards, an Intel Xeon Silver 4210 processor, and 256 GB of RAM. The software environment consisted of Ubuntu 18.0, CUDA 11.0, and Python 3.9.12.
 
 1.  Dataset preparation
 
