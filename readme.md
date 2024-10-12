@@ -1,10 +1,3 @@
-# Neural Networks with Linear Adaptive Batch Normalization and Swarm Intelligence Calibration for Real-Time Gaze Estimation on Smartphones
-
-Eye-tracking has emerged as a valuable tool for both research and clinical applications. However, traditional eye-tracking systems are often bulky and expensive, limiting their widespread adoption in various fields. With the advancement of deep learning and edge computing technologies, eye-tracking on smartphones becomes feasible. Nonetheless, the field still faces practical challenges related to large-scale datasets, model inference speed, and gaze estimation accuracy. 
-
-The present study created a new dataset that contains over 3.2 million face images collected with recent phone models and proposed a comprehensive smartphone eye-tracking pipeline, comprising a deep neural network framework (MGazeNet), a personalized model calibration method, and a heuristic gaze signal filter. The MGazeNet model introduced a Linear Adaptive Batch Normalization module to efficiently combine eye and face features, achieving state-of-the-art gaze estimation accuracy: 1.59 cm on the GazeCapture dataset and 1.48 cm on our custom dataset. Additionally, an algorithm utilizing Multi-Verse Optimization to optimize the hyperparameters of support vector regression (MVO-SVR) was proposed to improve eye tracking calibration accuracy with 13 or fewer ground-truth gaze points, further achieving gaze estimation accuracy to 0.89 cm compared to traditional calibration methods. This integrated approach allows for eye-tracking accuracy that is comparable to that of research-grade eye-trackers, offering new application possibilities for smartphone eye-tracking.
-
-
 # Gaze Estimation
 
 Train three models (iTracker, AFFNet, and MGazeNet) for gaze estimation and Deploy them on phones or PCs.
