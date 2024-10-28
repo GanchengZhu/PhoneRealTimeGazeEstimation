@@ -1,4 +1,6 @@
-# Gaze Estimation
+# Gaze Estimation on Smartphones
+
+The mobile eye-tracking app is now available at [https://apps.apple.com/cn/app/tcci-mobile-et/id6723893485].
 
 Train three models (iTracker, AFFNet, and MGazeNet) for gaze estimation and Deploy them on phones or PCs.
 The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090 graphics cards, an Intel Xeon Silver 4210 processor, and 256 GB of RAM. The software environment consisted of Ubuntu 18.0, CUDA 11.0, and Python 3.9.12.
