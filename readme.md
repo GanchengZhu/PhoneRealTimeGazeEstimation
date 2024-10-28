@@ -1,13 +1,13 @@
 # Gaze Estimation on Smartphones
 
-The mobile eye-tracking app is now available at [https://apps.apple.com/cn/app/tcci-mobile-et/id6723893485].
+The smartphone eye-tracking app is now available at [App Store](https://apps.apple.com/cn/app/tcci-mobile-et/id6723893485).
 
 Train three models (iTracker, AFFNet, and MGazeNet) for gaze estimation and Deploy them on phones or PCs.
 The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090 graphics cards, an Intel Xeon Silver 4210 processor, and 256 GB of RAM. The software environment consisted of Ubuntu 18.0, CUDA 11.0, and Python 3.9.12.
 
 1.  Dataset preparation
 
-    Download the preprocessed GazeCapture dataset using https://pan.baidu.com/s/1OUHRS_ZGWZ8J-YXIrasRIA?pwd=gaze .
+    Download the preprocessed GazeCapture dataset using (https://pan.baidu.com/s/1OUHRS_ZGWZ8J-YXIrasRIA?pwd=gaze).
     As per the IRB approved by the research ethics community governing the present study, the authors are not allowed to share any of the face images contained in the ZJUGaze dataset.
     
     Once downloaded, move to the dataset directory and unzip the dataset:
