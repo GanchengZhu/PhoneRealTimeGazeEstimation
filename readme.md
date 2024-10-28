@@ -7,7 +7,7 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
 
 1.  Dataset preparation
 
-    Download the preprocessed GazeCapture dataset using (https://pan.baidu.com/s/1OUHRS_ZGWZ8J-YXIrasRIA?pwd=gaze).
+      Download the preprocessed GazeCapture dataset using [this link](https://pan.baidu.com/s/1OUHRS_ZGWZ8J-YXIrasRIA?pwd=gaze).
     As per the IRB approved by the research ethics community governing the present study, the authors are not allowed to share any of the face images contained in the ZJUGaze dataset.
     
     Once downloaded, move to the dataset directory and unzip the dataset:
@@ -50,7 +50,7 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
 
 4. Deploy
     
-    Deploy your MNN model to either a smartphone or a PC for real-time gaze estimation. Please refer to https://github.com/GanchengZhu/MediaPipe-MMN-Android.
+    Deploy your MNN model to either a smartphone or a PC for real-time gaze estimation. Please refer to [the website](https://github.com/GanchengZhu/MediaPipe-MMN-Android).
 
 5. Finetuning
 
@@ -72,7 +72,7 @@ The experiment was performed on a workstation equipped with dual NVIDIA RTX 3090
 Calibration is essential for mapping the relationship between ocular features and gaze coordinates in both appearance- and geometry-based video eye tracking. We utilize three swarm intelligence algorithms to optimize the hyperparameters of the support vector regressor. Below are the steps to run the experiments.
 
 Before running the following code, please download the calibration feature dataset 
-using https://pan.baidu.com/s/1hdX_ntAam6cCwV5Za1qH0A?pwd=gaze . Then, unzipping the dataset and moving all files and directories to `SwarmIntelligentCalibration/calibration_data`.
+using [this link](https://pan.baidu.com/s/1hdX_ntAam6cCwV5Za1qH0A?pwd=gaze). Then, unzipping the dataset and moving all files and directories to `SwarmIntelligentCalibration/calibration_data`.
 
 1. Hyperparameter search for support vector regressor
 
@@ -108,7 +108,7 @@ The One Euro filter is a low-latency filtering algorithm, functioning as a first
 
 ## how to run eye movement filters
 
-   Download feature files from https://pan.baidu.com/s/1GkYKdjz1FHEuad4CyWiXOg?pwd=gaze. Then, unzipping the dataset and moving all files and directories to `Filter/feature`.
+   Download feature files from [this link](https://pan.baidu.com/s/1GkYKdjz1FHEuad4CyWiXOg?pwd=gaze). Then, unzipping the dataset and moving all files and directories to `Filter/feature`.
     
    ```bash
    cd Filter
