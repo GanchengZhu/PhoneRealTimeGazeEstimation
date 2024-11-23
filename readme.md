@@ -118,7 +118,7 @@ The One Euro filter is a low-latency filtering algorithm, functioning as a first
    ```
 
 # How to cite (Bibtex)
-
+```
 @article{https://doi.org/10.1155/2024/2644725,
 author = {Zhu, Gancheng and Li, Yongkai and Zhang, Shuai and Duan, Xiaoting and Huang, Zehao and Yao, Zhaomin and Wang, Rong and Wang, Zhiguo},
 title = {Neural Networks With Linear Adaptive Batch Normalization and Swarm Intelligence Calibration for Real-Time Gaze Estimation on Smartphones},
@@ -133,5 +133,6 @@ eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1155/2024/2644725},
 abstract = {Eye tracking has emerged as a valuable tool for both research and clinical applications. However, traditional eye-tracking systems are often bulky and expensive, limiting their widespread adoption in various fields. Smartphone eye tracking has become feasible with advanced deep learning and edge computing technologies. However, the field still faces practical challenges related to large-scale datasets, model inference speed, and gaze estimation accuracy. The present study created a new dataset that contains over 3.2 million face images collected with recent phone models and presents a comprehensive smartphone eye-tracking pipeline comprising a deep neural network framework (MGazeNet), a personalized model calibration method, and a heuristic gaze signal filter. The MGazeNet model introduced a linear adaptive batch normalization module to efficiently combine eye and face features, achieving the state-of-the-art gaze estimation accuracy of 1.59 cm on the GazeCapture dataset and 1.48 cm on our custom dataset. In addition, an algorithm that utilizes multiverse optimization to optimize the hyperparameters of support vector regression (MVO–SVR) was proposed to improve eye-tracking calibration accuracy with 13 or fewer ground-truth gaze points, further improving gaze estimation accuracy to 0.89 cm. This integrated approach allows for eye tracking with accuracy comparable to that of research-grade eye trackers, offering new application possibilities for smartphone eye tracking.},
 year = {2024}
 }
+```
 
 
